@@ -1,54 +1,47 @@
-# React + TypeScript + Vite
+# Task Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Лаконичное и наглядное приложение для управления списком задач на React + TypeScript + Zustand + Ant Design.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🔎 Описание
 
-## Expanding the ESLint configuration
+Task Manager позволяет:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Добавлять, удалять и редактировать задачи  
+- Отмечать задачи как выполненные  
+- Фильтровать задачи по статусу, приоритету, диапазону дат, тегам и текстовому поиску  
+- Сохранять пользовательские фильтры и список задач в `localStorage`  
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Приложение построено по модульной архитектуре с разделением на слои:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+```src/ ├── core/ — типы и бизнес‑логика ├── storage/ — Zustand‑сторы + persist для localStorage ├── ui/ — React‑компоненты (форма, список, модалки, фильтры) ├── utils/ — вспомогательные функции (например, фильтрация по дате) └── App.tsx — точка входа```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---
+
+## 🚀 Особенности
+
+- **TypeScript**: полная типизация всех компонентов и стора  
+- **Ant Design**: готовые компоненты UI (Form, List, Select, Modal, Checkbox и др.)  
+- **Zustand**: лёгкий Flux‑подход для управления состоянием + `persist` для автоматического сохранения в `localStorage`  
+- **Day.js**: удобная работа с датами  
+- **lodash.debounce**: поиск с задержкой 300 мс для оптимизации  
+
+---
+
+## ⚙️ Установка и запуск
+
+```bash
+# Клонировать репозиторий
+git clone ...
+cd dirname
+
+# Установить зависимости
+npm install
+
+# Запустить в режиме разработки
+npm run dev
+
+# Собрать production‑версию
+npm run build
